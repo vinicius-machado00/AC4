@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Gerar Boleto</title>
+        <link rel="stylesheet" type="text/css" href="/static/serie.css"></link>
+        <script type="text/javascript">
+
+            function validar() {
+                const nome = document.getElementById('nome');
+                const documento = document.getElementById('documento');
+                const valor = document.getElementById('valor');
+            
+                nome.value = nome.value.trim();
+                documento.value = documento.value.trim();
+                valor.value = valor.value.trim();
+
+
+                if (nome.value === '') {
+                    alert("Preencha o nome!");
+                    return false;
+                }
+                if (documento.value === ''){
+                    alert("Preencha o documento!");
+                    return false;
+                }
+                if (valor.value === '') {
+                    alert("Preencha o valor!");
+                    return false;
+                }
+
+                return true;
+            }
+
+            function salvar() {
+                if (!validar()) return;
+                document.getElementById("form_principal").submit();
+            }
+        </script>
+    </head>
+    <body>
+
+        <form action="/gerarboleto" method="POST" id="form_principal">
+
+            <p>Gerar Boleto</p>
+
+            <p>
+                <label for="Nome">Nome:</label><br/>
+                <input type="text" id="nome" name="nome" autocomplete="off"/>
+            </p>
+            <p>
+                <label for="documento">CPF/CNPJ:</label><br/>
+                <input type="text" id="documento" name="documento" autocomplete="off"/>
+            </p>
+            <p>
+                <label for="valor">Valor:</label><br/>
+                <input type="text" id="valor" name="valor" autocomplete="off"/>
+            </p>                                                         
+            <p>
+            </p>
+            <p>
+                <button type="button" onclick="javascript:salvar();">Gerar</button>
+            </p>
+        </form>
+    </body>
+</html>
